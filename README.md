@@ -17,5 +17,5 @@ Generates ``export_{source_lang}_{target_lang}_{time}.csv`` in the export direct
 ## Import into Anki
 You must have [Note Type: Puzzle Sentences](https://ankiweb.net/shared/info/1522392024) installed to use the Puzzle Sentences+ notetype! (credit Present-Boat-2053)
 
-For importing into Anki press Ctrl+Shift+I on Windows (File->Import) and use order 1-3-2 or 3-1-4:
+For importing into Anki press ``Ctrl+Shift+I`` on Windows (File->Import) and use order 1-3-2 or 3-1-4:
 ![alt text](docs/obrazek-1.png)

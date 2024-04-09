@@ -5,6 +5,7 @@ e.g. ``python generator.py en de sentences.txt``
 
 ## Currently supported langauges
 English (en), German (de)
+> [!NOTE]
 > I'll add Spanish (es) and French (fr) as soon as possible, for other languages feel free to fork or colab.
 
 ## Output

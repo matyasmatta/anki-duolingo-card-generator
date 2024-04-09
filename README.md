@@ -1,4 +1,5 @@
-# Usage
+# Anki-Duolingo Card Generator
+## Usage
 ``python generator.py {source-language} {target-language} {source-file}``
 
 e.g. ``python generator.py en de sample/english.txt``
@@ -9,8 +10,8 @@ e.g. ``python generator.py en de sample/english.txt``
 ## Currently supported langauges
 English (``en``), German (``de``), Czech (``cs``)
 
-> [!NOTE]
-> Keep in mind Google Translate is currently used for the translation, therefore it is imperfect, I will update it with more translator options coming soon, for now Google is universal.
+## Currently supported translators
+By default the ``translate`` library is used and therefore the MyMemory Translation API is utilised. You can change it to ``googletrans`` in the code, if you will, by changing the default lib argument. 
 
 ## Output
 The script generates a ``.csv`` in format [Language1, WordContainerLang1, Language2, WordContainerLang2]. You can therefore generate ``en->de`` or ``de->en`` both ways just flipping the order. 
@@ -22,3 +23,7 @@ You must have [Note Type: Puzzle Sentences](https://ankiweb.net/shared/info/1522
 
 For importing into Anki press ``Ctrl+Shift+I`` on Windows (File->Import) and use order 1-3-2 or 3-1-4:
 ![alt text](docs/obrazek-1.png)
+
+## Requirements
+- Python 3.10 and higher due to match-case pattern matching
+- for libraries see requirements.txt in file directory

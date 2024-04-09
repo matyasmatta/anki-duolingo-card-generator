@@ -1,5 +1,6 @@
 import csv
-from googletrans import Translator
+from googletrans import Translator as GoogleTranslator
+from translate import Translator as UniversalTranslator
 import assess_level
 import argparse
 import time
@@ -48,10 +49,20 @@ class Sentence:
         self.language_1_wordcontainer = self.generate_wordcontainer(self.language_1, self.source_lang)
         self.language_2_wordcontainer = self.generate_wordcontainer(self.language_2, self.output_lang)
     
-    def translate_sentence(self, sentence, source_lang="de", output_lang="en"):
-        translator = Translator()
-        translation = translator.translate(sentence, src=source_lang, dest=output_lang)
-        return translation.text
+    def translate_sentence(self, sentence, source_lang="de", output_lang="en", lib="translate"):
+        match lib:
+            case "googletrans":
+                translator = GoogleTranslator()
+                translation = translator.translate(sentence, src=source_lang, dest=output_lang)
+                return translation.text
+            case "translate":
+                translator = UniversalTranslator(from_lang=source_lang, to_lang=output_lang)
+                translation = translator.translate(sentence)
+                return translation
+            case _:
+                translator = GoogleTranslator()
+                translation = translator.translate(sentence, src=source_lang, dest=output_lang)
+                return translation.text
     
     def generate_wordcontainer(self, data, lang):
         # The Anki cardtype needs a few more words to confuse the player, by default 20% will be overflow words
@@ -75,12 +86,13 @@ def main():
     parser.add_argument('lang1', type=str, help='Language code for column 1 (e.g., "en")')
     parser.add_argument('lang2', type=str, help='Language code for column 2 (e.g., "de")')
     parser.add_argument('filename', type=str, help='Input filename containing language data')
+    
     args = parser.parse_args()
-        
+            
     file = SourceFile(args.lang1, args.lang2, args.filename)
     name = file.export()
     print(f"CSV file '{name}' has been created successfully in folder 'export'.")
 
 
 if __name__ == "__main__":
-   main()
+    main()

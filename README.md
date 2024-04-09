@@ -10,7 +10,9 @@ English (en), German (de), Czech (cs)
 > Keep in mind Google Translate is currently used for the translation, therefore it is imperfect, I will update it with more translator options coming soon, for now Google is universal.
 
 ## Output
-The script generates a CSV in format [Language1, WordContainerLang1, Language2, WordContainerLang2]. You can therefore generate en->de or de->en both ways just flipping the order. Generates "export-{time}.csv in the main directory.
+The script generates a CSV in format [Language1, WordContainerLang1, Language2, WordContainerLang2]. You can therefore generate en->de or de->en both ways just flipping the order. 
+
+Generates ``export_{source_lang}_{target_lang}_{time}.csv`` in the export directory.
 
 ## Import into Anki
 You must have [Note Type: Puzzle Sentences](https://ankiweb.net/shared/info/1522392024) installed to use the Puzzle Sentences+ notetype! (credit Present-Boat-2053)

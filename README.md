@@ -4,13 +4,13 @@
 e.g. ``python generator.py en de sentences.txt``
 
 ## Currently supported langauges
-English (en), German (de), Czech (cs)
+English (``en``), German (``de``), Czech (``cs``)
 
 > [!NOTE]
 > Keep in mind Google Translate is currently used for the translation, therefore it is imperfect, I will update it with more translator options coming soon, for now Google is universal.
 
 ## Output
-The script generates a CSV in format [Language1, WordContainerLang1, Language2, WordContainerLang2]. You can therefore generate en->de or de->en both ways just flipping the order. 
+The script generates a ``.csv`` in format [Language1, WordContainerLang1, Language2, WordContainerLang2]. You can therefore generate ``en->de`` or ``de->en`` both ways just flipping the order. 
 
 Generates ``export_{source_lang}_{target_lang}_{time}.csv`` in the export directory.
 

@@ -1,6 +1,7 @@
 import csv
 from googletrans import Translator as GoogleTranslator
 from translate import Translator as UniversalTranslator
+import deep_translator
 import assess_level
 import argparse
 import time
@@ -31,8 +32,8 @@ class SourceFile:
         with open(name, "w", newline='') as f:
             writer = csv.writer(f)
             for item in self.data:
-                word_container_1 = ', '.join(f'{word}' for word in item.language_1_wordcontainer)
-                word_container_2 = ', '.join(f'{word}' for word in item.language_2_wordcontainer)
+                word_container_1 = ' '.join(f'{word}' for word in item.language_1_wordcontainer)
+                word_container_2 = ' '.join(f'{word}' for word in item.language_2_wordcontainer)
                 row = (item.language_1, word_container_1, item.language_2, word_container_2)
                 writer.writerow(row)
         return name 
@@ -52,20 +53,16 @@ class Sentence:
     def translate_sentence(self, sentence, source_lang="de", output_lang="en", lib="googletrans"):
         match lib:
             case "googletrans":
-                translator = GoogleTranslator()
-                translation = translator.translate(sentence, src=source_lang, dest=output_lang)
-                return translation.text
+                return deep_translator.GoogleTranslator(source=source_lang, target=output_lang).translate(sentence)
             case "translate":
                 translator = UniversalTranslator(from_lang=source_lang, to_lang=output_lang)
                 translation = translator.translate(sentence)
                 return translation
             case _:
-                translator = GoogleTranslator()
-                translation = translator.translate(sentence, src=source_lang, dest=output_lang)
-                return translation.text
+                return deep_translator.GoogleTranslator(source=source_lang, target=output_lang).translate(sentence) 
     
     def generate_wordcontainer(self, data, lang):
-        # The Anki cardtype needs a few more words to confuse the player, by default 20% will be overflow words
+        # The Anki cardtype needs a few more words to confuse the player, by default 150% will be overflow words
         overflow_index = round(len(data.split(" "))*1.5)
         return assess_level.get_similar_words(assess_level.assess_sentence(data, lang), overflow_index, lang)
     

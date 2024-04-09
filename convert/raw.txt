@@ -4989,5 +4989,5 @@ důchodu 2590
 pozdrav 2589
 nedotýkej 2587
 petr 2587
-oceánu 2587
+oceánu 2587dd
 start

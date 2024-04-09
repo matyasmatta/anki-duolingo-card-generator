@@ -33,5 +33,5 @@ For importing into Anki press ``Ctrl+Shift+I`` on Windows (File->Import) and use
 ![alt text](docs/obrazek-1.png)
 
 ## Requirements
-- Python 3.10 and higher due to match-case pattern matching
-- for libraries see requirements.txt in file directory
+- Python ``3.10`` and higher due to match-case pattern matching
+- for libraries see ``requirements.txt`` in file directory

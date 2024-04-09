@@ -3,6 +3,7 @@ from googletrans import Translator
 import assess_level
 import argparse
 import time
+import tqdm
 
 class SourceFile:
     def __init__(self, source_lang, output_lang, source_location, source_format = "txt"):
@@ -20,12 +21,12 @@ class SourceFile:
     
     def sentences(self):
         result = list()
-        for item in self.raw:
+        for item in tqdm.tqdm(self.raw):
             result.append(Sentence(item, self.source_lang, self.output_lang))
         return result
 
     def export(self):
-        name = f"export_{time.strftime('%Y%m%d-%H%M%S')}.csv"
+        name = f"export/export_{self.source_lang}_{self.output_lang}_{time.strftime('%Y%m%d-%H%M%S')}.csv"
         with open(name, "w", newline='') as f:
             writer = csv.writer(f)
             for item in self.data:
@@ -54,7 +55,7 @@ class Sentence:
     
     def generate_wordcontainer(self, data, lang):
         # The Anki cardtype needs a few more words to confuse the player, by default 20% will be overflow words
-        overflow_index = round(len(data.split(" "))*0.5)
+        overflow_index = round(len(data.split(" "))*1.5)
         return assess_level.get_similar_words(assess_level.assess_sentence(data, lang), overflow_index, lang)
     
     def extract_words(self, data):
@@ -74,12 +75,11 @@ def main():
     parser.add_argument('lang1', type=str, help='Language code for column 1 (e.g., "en")')
     parser.add_argument('lang2', type=str, help='Language code for column 2 (e.g., "de")')
     parser.add_argument('filename', type=str, help='Input filename containing language data')
-
     args = parser.parse_args()
-
+        
     file = SourceFile(args.lang1, args.lang2, args.filename)
     name = file.export()
-    print(f"CSV file '{name}' has been created successfully.")
+    print(f"CSV file '{name}' has been created successfully in folder 'export'.")
 
 
 if __name__ == "__main__":

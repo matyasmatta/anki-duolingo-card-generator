@@ -2,19 +2,12 @@ import statistics
 import random
 
 def import_word_list(lang):
-    match lang:
-        case "de":
-            with open("language_packs/german_10000.txt", "r") as f:
-                file_contents = f.read()
-                return file_contents.split()
-        case "es":
-            pass
-        case "en":
-            with open("language_packs/english_10000.txt", "r") as f:
-                file_contents = f.read()
-                return file_contents.split()
-        case _:
-            raise Exception("Unsupported language.")
+    try:
+        with open(f"language_packs/{lang}.txt", "r") as f:
+            file_contents = f.read()
+            return file_contents.split()
+    except:
+        raise Exception("Unsupported language, no language_pack map found!")
 
 def normalise(data):
     characters_to_replace = ['.', '?', '!', ',']
@@ -38,7 +31,10 @@ def assess_word(word, lang):
 def assess_sentence(sentence, lang):
     indexes = [assess_word(word, lang) for word in normalise(sentence).split(" ")]
     indexes = [value for value in indexes if value is not None]
-    median = statistics.median(indexes)
+    try: 
+        median = statistics.median(indexes) 
+    except: 
+        median = random.randint(1000,2000)
     return round(median)
 
 def get_similar_words(index, num, lang):

@@ -35,7 +35,7 @@ def assess_sentence(sentence, lang):
         median = statistics.median(indexes) 
     except: 
         median = random.randint(1000,2000)
-    return round(median)
+    return round((max(indexes)+median)/2)
 
 def get_similar_words(index, num, lang):
     return [import_word_list(lang)[index+random.randint(-20,20)] for i in range(num)]

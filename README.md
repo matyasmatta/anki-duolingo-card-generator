@@ -24,6 +24,8 @@ The script generates a ``.csv`` in format [Language1, WordContainerLang1, Langua
 
 Generates ``export_{source_lang}_{target_lang}_{time}.csv`` in the export directory.
 
+![example csv](docs/obrazek-2.png)
+
 ## Import into Anki
 You must have [Note Type: Puzzle Sentences](https://ankiweb.net/shared/info/1522392024) installed to use the Puzzle Sentences+ notetype! (credit Present-Boat-2053)
 

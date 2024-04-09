@@ -1,5 +1,5 @@
 # Usage
-``python generator.py {source-language: en} {target-language} {source-file}``
+``python generator.py {source-language} {target-language} {source-file}``
 
 e.g. ``python generator.py en de sentences.txt``
 

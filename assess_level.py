@@ -38,7 +38,18 @@ def assess_sentence(sentence, lang):
     return round((max(indexes)+median)/2)
 
 def get_similar_words(index, num, lang):
-    return [import_word_list(lang)[index+random.randint(-20,20)] for i in range(num)]
+    return make_list_unique([import_word_list(lang)[index+random.randint(-20,20)] for i in range(num)])
+
+def make_list_unique(input_list):
+    seen_elements = set()
+    unique_list = []
+
+    for element in input_list:
+        if element not in seen_elements:
+            unique_list.append(element)
+            seen_elements.add(element)
+
+    return unique_list
 
 if __name__ == "__main__":
     print(assess_sentence("Die grüne Fuchs ist eine der schönsten."))

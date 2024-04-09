@@ -49,7 +49,7 @@ class Sentence:
         self.language_1_wordcontainer = self.generate_wordcontainer(self.language_1, self.source_lang)
         self.language_2_wordcontainer = self.generate_wordcontainer(self.language_2, self.output_lang)
     
-    def translate_sentence(self, sentence, source_lang="de", output_lang="en", lib="translate"):
+    def translate_sentence(self, sentence, source_lang="de", output_lang="en", lib="googletrans"):
         match lib:
             case "googletrans":
                 translator = GoogleTranslator()
